@@ -1,0 +1,6 @@
+C:\Users\Luke\Documents\C#\Project\App2_4\bin\Debug\App2_4.exe
+C:\Users\Luke\Documents\C#\Project\App2_4\bin\Debug\App2_4.pdb
+C:\Users\Luke\Documents\C#\Project\App2_4\obj\Debug\App2_4.csprojResolveAssemblyReference.cache
+C:\Users\Luke\Documents\C#\Project\App2_4\obj\Debug\App2_4.csproj.CoreCompileInputs.cache
+C:\Users\Luke\Documents\C#\Project\App2_4\obj\Debug\App2_4.exe
+C:\Users\Luke\Documents\C#\Project\App2_4\obj\Debug\App2_4.pdb
