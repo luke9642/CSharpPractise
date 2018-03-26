@@ -1,6 +1,0 @@
-C:\Users\Luke\Documents\C#\Project\App20\bin\Debug\App20.exe
-C:\Users\Luke\Documents\C#\Project\App20\bin\Debug\App20.pdb
-C:\Users\Luke\Documents\C#\Project\App20\obj\Debug\App20.csprojResolveAssemblyReference.cache
-C:\Users\Luke\Documents\C#\Project\App20\obj\Debug\App20.csproj.CoreCompileInputs.cache
-C:\Users\Luke\Documents\C#\Project\App20\obj\Debug\App20.exe
-C:\Users\Luke\Documents\C#\Project\App20\obj\Debug\App20.pdb

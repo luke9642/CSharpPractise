@@ -1,6 +1,0 @@
-C:\Users\Luke\Documents\C#\Project\App1\obj\Release\App1.csprojResolveAssemblyReference.cache
-C:\Users\Luke\Documents\C#\Project\App1\obj\Release\App1.csproj.CoreCompileInputs.cache
-C:\Users\Luke\Documents\C#\Project\App1\bin\Release\App1.exe
-C:\Users\Luke\Documents\C#\Project\App1\bin\Release\App1.pdb
-C:\Users\Luke\Documents\C#\Project\App1\obj\Release\App1.exe
-C:\Users\Luke\Documents\C#\Project\App1\obj\Release\App1.pdb
