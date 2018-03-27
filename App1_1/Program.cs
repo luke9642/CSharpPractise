@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace App1_1
 {
@@ -11,7 +12,7 @@ namespace App1_1
 
             Console.WriteLine("Witaj w grze Diablo");
             Console.WriteLine("[1] Zacznij nową grę");
-            Console.WriteLine("[x] Zamknij program");
+            Console.WriteLine("[X] Zamknij program");
 
             var data = ReadProperValue(new List<string> {"1", "x"});
             
@@ -32,21 +33,59 @@ namespace App1_1
 
             #region StartGame
 
-            var location = Factory.CreateLocationWithTwoNpcs();
+            var locations = new List<Location>
+            {
+                Factory.CreateLocationWithTwoNpcs(),
+                Factory.CreateEmptyLocation("Silverymoon", true),
+                Factory.CreateEmptyLocation("Calimport", true),
+                Factory.CreateEmptyLocation("Loc 4", false),
+                Factory.CreateEmptyLocation("Loc 5", true),
+                Factory.CreateEmptyLocation("Loc 6", false)
+            };
+
+            var currentLocation = locations[0];
 
             while (true)
             {
-                ShowLocation(location);
-                var list = GetRangeList(location.NonPlayerCharacters.Length);
-                list.Add("x");
+                ShowLocation(currentLocation);
+                var list = GetRangeList(currentLocation.NonPlayerCharacters?.Length ?? 0);
+                list.Add("T");
+                list.Add("X");
                 data = ReadProperValue(list);
                 ExitIfX(data);
-                TalkTo(new DialogParser(hero), location.NonPlayerCharacters[int.Parse(data)]);
-                Console.WriteLine("Naciśnij dowolny przycisk...");
-                Console.ReadKey();
+                
+                if (data == "T")
+                {
+                    var filteredLocations = locations.Where(location => location.IsUnlocked && location != currentLocation).OrderBy(elem => elem.Name).ToList();
+                    ShowLocations(filteredLocations, currentLocation);
+                    var rangeList = GetRangeList(filteredLocations.Count);
+                    rangeList.Add("X");
+
+                    var val = ReadProperValue(rangeList);
+                    Console.WriteLine("|" + val + "|");
+                    if (val != "X")
+                        currentLocation = filteredLocations[int.Parse(val)];
+                }
+                else
+                {
+                    if (currentLocation.NonPlayerCharacters != null)
+                        TalkTo(new DialogParser(hero), currentLocation.NonPlayerCharacters[int.Parse(data)]);
+                    Console.WriteLine("Naciśnij dowolny przycisk...");
+                    Console.ReadKey();
+                }
             }
             
             #endregion
+        }
+        
+        private static void ShowLocations(IEnumerable<Location> locations, Location currentLocation)
+        {
+            var i = 0;
+            Console.Clear();
+            Console.WriteLine("Znajdujesz się w " + currentLocation.Name + ". Gdzie chcesz wyruszyć?");
+            foreach (var location in locations)
+                Console.WriteLine("[" + i++ + "] " + location.Name);
+            Console.WriteLine("[X] Powrót");
         }
 
         private static void ExitIfX(string data, int exitCode=0)
@@ -98,13 +137,15 @@ namespace App1_1
             var i = 0;
             Console.Clear();
             Console.WriteLine("Znajdujesz się w " + location.Name + ". Co chcesz zrobić?");
-            foreach (var npc in location.NonPlayerCharacters)
-            {
-                Console.WriteLine("[" + i + "] Porozmawiaj z " + npc.Name);
-                ++i;
-            }
+            if (location.NonPlayerCharacters != null)
+                foreach (var npc in location.NonPlayerCharacters)
+                {
+                    Console.WriteLine("[" + i + "] Porozmawiaj z " + npc.Name);
+                    ++i;
+                }
             
-            Console.WriteLine("[x] Zamknij program");
+            Console.WriteLine("[T] Podróżuj");
+            Console.WriteLine("[X] Zamknij program");
         }
 
         private static List<string> GetRangeList(int length)
@@ -148,7 +189,7 @@ namespace App1_1
                     Console.WriteLine("Błędne dane. Jeszcze raz...");
                 }
                     
-                data = Console.ReadLine()?.Trim();
+                data = Console.ReadLine()?.Trim().ToUpper();
                 flag = true;
             }
             while (!listOfCorrectData.Contains(data));

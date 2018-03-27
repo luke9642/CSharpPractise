@@ -33,7 +33,17 @@
             return new Location
             {
                 Name = "Neverwinter",
-                NonPlayerCharacters = new[] {npc1, npc2}
+                NonPlayerCharacters = new[] {npc1, npc2},
+                IsUnlocked = true
+            };
+        }
+        
+        public static Location CreateEmptyLocation(string name, bool isUnlocked)
+        {
+            return new Location
+            {
+                Name = name,
+                IsUnlocked = isUnlocked
             };
         }
     }
