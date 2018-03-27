@@ -4,9 +4,9 @@
  
  namespace App2_4
  {
-     internal class Program
+     internal static class Program
      {
-         public static void Main(string[] args)
+         public static void Main()
          {
              string city;
              var cities = new List<string>();
@@ -18,13 +18,14 @@
  
              cities.Remove("X");
  
-             var dict = cities.GroupBy(x => x.First(), x => x); //.OrderBy(x => x); //.ToDictionary(x => x.First(), x => x)
+             var dict = cities
+                 .GroupBy(x => x.First(), x => x)
+                 .ToDictionary(elem => elem.Key, elem => elem.OrderBy(x => x).ToList());
              
-             
-             
-             foreach (var d in dict)
+             while (true)
              {
-                 Console.WriteLine(d);
+                 var key = char.Parse(Console.ReadLine() ?? throw new Exception("Złe dane"));
+                 Console.WriteLine(dict.ContainsKey(key) ? dict[key].Aggregate((a, b) => a + ", " + b) : "PUSTE");
              }
          }
      }
