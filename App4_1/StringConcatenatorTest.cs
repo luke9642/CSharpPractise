@@ -5,39 +5,21 @@ namespace App4_1
     [TestFixture]
     public class StringConcatenatorTest
     {
-        [Test]
-        public void checkEmptyLeftString()
+        [TestCase(null, "qwe")]
+        [TestCase("qwe", null)]
+        [TestCase(null, null)]
+        public void CheckNullString(string word1, string word2)
         {
-            var stringConcatenator = new StringConcatenator();
-            Assert.AreEqual(stringConcatenator.concatenate("", "qwe"), "qwe");
+            Assert.IsNull(word1.Concatenate(word2));
         }
         
-        [Test]
-        public void checkNullLeftString()
+        [TestCase("qwe", "", "qwe")]
+        [TestCase("", "rty", "rty")]
+        [TestCase("qwe", "rty", "qwerty")]
+        [TestCase("", "", "")]
+        public void CheckStrings(string word1, string word2, string result)
         {
-            var stringConcatenator = new StringConcatenator();
-            Assert.AreEqual(stringConcatenator.concatenate(null, "qwe"), null);
-        }
-        
-        [Test]
-        public void checkNullRightString()
-        {
-            var stringConcatenator = new StringConcatenator();
-            Assert.AreEqual(stringConcatenator.concatenate("qwe", null), null);
-        }
-        
-        [Test]
-        public void checkNullStrings()
-        {
-            var stringConcatenator = new StringConcatenator();
-            Assert.AreEqual(stringConcatenator.concatenate(null, null), null);
-        }
-        
-        [Test]
-        public void checkNotEmptyStrings()
-        {
-            var stringConcatenator = new StringConcatenator();
-            Assert.AreEqual(stringConcatenator.concatenate("qwe", "rty"), "qwerty");
+            Assert.AreEqual(word1.Concatenate(word2), result);
         }
     }
 }

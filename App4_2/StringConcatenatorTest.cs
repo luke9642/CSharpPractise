@@ -6,34 +6,20 @@ namespace App4_2
     [TestFixture]
     public class StringConcatenatorTest
     {
-        [Test]
-        public void checkEmptyLeftString()
+        [TestCase(null, "qwe")]
+        [TestCase("qwe", null)]
+        [TestCase(null, null)]
+        public void CheckNullString(string word1, string word2)
         {
-            Assert.AreEqual(new StringConcatenator().concatenate("", "qwe"), "qwe");
+            Assert.Throws<ArgumentNullException>(() => new StringConcatenator().Concatenate(word1, word2));
         }
         
-        [Test]
-        public void checkNullLeftString()
+        [TestCase("qwe", "", "qwe")]
+        [TestCase("", "rty", "rty")]
+        [TestCase("qwe", "rty", "qwerty")]
+        public void CheckStrings(string word1, string word2, string result)
         {
-            Assert.Throws<ArgumentNullException>(() => new StringConcatenator().concatenate(null, "qwe"));
-        }
-        
-        [Test]
-        public void checkNullRightString()
-        {
-            Assert.Throws<ArgumentNullException>(() => new StringConcatenator().concatenate("qwe", null));
-        }
-        
-        [Test]
-        public void checkNullStrings()
-        {
-            Assert.Throws<ArgumentNullException>(() => new StringConcatenator().concatenate(null, null));
-        }
-        
-        [Test]
-        public void checkNotEmptyStrings()
-        {
-            Assert.AreEqual(new StringConcatenator().concatenate("qwe", "rty"), "qwerty");
+            Assert.AreEqual(new StringConcatenator().Concatenate(word1, word2), result);
         }
     }
 }
