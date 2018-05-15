@@ -1,8 +1,8 @@
 ﻿namespace App4_1
 {
-    public class StringConcatenator
+    public static class StringConcatenator
     {
-        public string concatenate(string first, string second)
+        public static string Concatenate(this string first, string second)
         {
             if (first == null || second == null)
                 return null;
