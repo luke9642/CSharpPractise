@@ -46,8 +46,8 @@ namespace App7_1
 
                     border.Background = GetBorder(randomValue);
                     panel.Background = GetBackground(randomValue);
-                    exchange.Text = (double.Parse(exchange.Text.Replace(".", ",")) + randomValue).ToString().Replace(",", ".");
-                    value.Text = randomValue.ToString().Replace(",", ".");
+                    exchange.Text = $"{(double.Parse(exchange.Text.Replace(".", ",")) + randomValue):0.00}";
+                    value.Text = $"{randomValue:0.00}";
                 });
 
                 await Task.Delay(2000);
