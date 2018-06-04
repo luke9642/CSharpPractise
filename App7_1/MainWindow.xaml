@@ -3,21 +3,73 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:App7_1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Monitor Giełdy" Height="450" Width="800">
     <UniformGrid Rows="2" Columns="2">
-        <StackPanel Grid.Column="0">
-            <TextBlock Text ="Ok"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock Text ="Ok"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2">
-            <TextBlock Text ="Ok"/>
-        </StackPanel>
-        <StackPanel Grid.Column="3">
-            <TextBlock Text ="Ok"/>
-        </StackPanel>
+        <UniformGrid.Effect>
+            <BlurEffect Radius="2"></BlurEffect>
+        </UniformGrid.Effect>
+        <Border Name="KghmBorder">
+            <StackPanel Name="KghmPanel">
+                <TextBlock>KGHM</TextBlock>
+                <TextBlock>
+                    <Run x:Name="KghmExchange" Text="100.00"/> PLN
+                </TextBlock>
+                <TextBlock FontSize="30">
+                    <Run x:Name="KghmValue" Text="0.00"/> PLN
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Name="PkobpBorder">
+            <StackPanel Name="PkobpPanel">
+                <TextBlock>PKO BP</TextBlock>
+                <TextBlock>
+                    <Run x:Name="PkobpExchange" Text="100.00"/> PLN
+                </TextBlock>
+                <TextBlock FontSize="30">
+                    <Run x:Name="PkobpValue" Text="0.00"/> PLN
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Name="LotosBorder">
+            <StackPanel Name="LotosPanel">
+                <TextBlock>LOTOS</TextBlock>
+                <TextBlock>
+                    <Run x:Name="LotosExchange" Text="100.00"/> PLN
+                </TextBlock>
+                <TextBlock FontSize="30">
+                    <Run x:Name="LotosValue" Text="0.00"/> PLN
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Name="OrlenBorder">
+            <StackPanel Name="OrlenPanel">
+                <TextBlock>ORLEN</TextBlock>
+                <TextBlock>
+                    <Run x:Name="OrlenExchange" Text="100.00"/> PLN
+                </TextBlock>
+                <TextBlock FontSize="30">
+                    <Run x:Name="OrlenValue" Text="0.00"/> PLN
+                </TextBlock>
+            </StackPanel>
+        </Border>
     </UniformGrid>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="#000000"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+    </Window.Resources>
 </Window>
+ 
